@@ -1,0 +1,1 @@
+pyinstaller -F 應用程式名.py
