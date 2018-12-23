@@ -1,6 +1,0 @@
-requests[security]
-six
-colorama
-requests
-unidecode
-pyOpenSSL
