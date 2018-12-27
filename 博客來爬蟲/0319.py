@@ -3,7 +3,7 @@ import json
 from bs4 import BeautifulSoup
 
 # 下載 博客來 首頁內容(可替換成各種不同類型的書籍分類)
-r = requests.get('https://www.books.com.tw/web/sys_saletopb/books/08/?loc=P_002_009')
+r = requests.get('https://www.books.com.tw/web/sys_saletopb/books/19?attribute=30')
 
 # 開啟檔案
 fp = open("bookstest.txt", "a")

@@ -26,7 +26,7 @@ def find_between_r( s, first, last ):
 #-------------------------------------------
 # 讀取一個網頁內容
 #-------------------------------------------
-driver = webdriver.Chrome("chromedriver.exe")
+driver = webdriver.Firefox()
 
 
 #-------------------------------------------
