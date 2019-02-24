@@ -1,0 +1,13 @@
+import twder
+a=twder.now('USD')
+b=twder.now('EUR')
+c=twder.now('GBP')
+d=twder.now('CNY')
+e=twder.now('JPY')
+f=twder.now('KRW')
+print('美金:現金買入, 現金賣出, 即期買入, 即期賣出',a)
+print('歐元:現金買入, 現金賣出, 即期買入, 即期賣出',b)
+print('英鎊:現金買入, 現金賣出, 即期買入, 即期賣出',c)
+print('人民幣:現金買入, 現金賣出, 即期買入, 即期賣出',d)
+print('日元:現金買入, 現金賣出, 即期買入, 即期賣出',e)
+print('韓元:現金買入, 現金賣出, 即期買入, 即期賣出',f)
