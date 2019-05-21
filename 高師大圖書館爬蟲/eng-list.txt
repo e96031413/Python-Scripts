@@ -1,0 +1,3 @@
+http://nknulib.nknu.edu.tw/search*cht?/ftlist^bib23%2C1%2C0%2C108/mode=2
+http://nknulib.nknu.edu.tw/search*cht?/ftlist^bib23%2C51%2C0%2C108/mode=2
+http://nknulib.nknu.edu.tw/search*cht?/ftlist^bib23%2C101%2C0%2C108/mode=2
