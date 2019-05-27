@@ -2,10 +2,8 @@ http://feedly.com/i/welcome
 https://www.chromeba.net/
 https://getpocket.com/a/queue/
 https://getpocket.com/explore/trending?src=top_navbar
-https://getitfree.cn/
 https://www.facebook.com/
 https://www.youtube.com/feed/subscriptions
-https://www.lynda.com/#member-courses
 https://www.52pojie.cn/forum-66-1.html
 https://www.52pojie.cn/forum.php?mod=forumdisplay&fid=66&filter=typeid&typeid=347&orderby=dateline
 https://www.52pojie.cn/forum.php?mod=forumdisplay&fid=66&filter=typeid&typeid=346&orderby=dateline
@@ -19,9 +17,7 @@ http://megafunpro.com/forum-376-1.html
 http://megafunpro.com/forum-158-1.html
 http://megafunpro.com/forum-56-1.html
 http://megafunpro.com/forum-375-1.html
-http://www.99kubo.tv/vod-search-id-1-cid--area--tag--year--wd--actor--order-vod_addtime%20desc.html
-https://www.58b.tv/vod-search-id-1-cid--area--tag--year--wd--actor--order-vod_addtime%20desc.html
 https://v.gimy.tv/
 http://www.menshealth.co.uk/
-https://v.gimy.tv/movies/
+
 
