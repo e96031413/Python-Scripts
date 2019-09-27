@@ -1,7 +1,6 @@
 http://feedly.com/i/welcome
 https://www.chromeba.net/
 https://getpocket.com/a/queue/
-https://getpocket.com/explore/trending?src=top_navbar
 https://www.facebook.com/
 https://www.youtube.com/feed/subscriptions
 https://apk.tw/forum.php
@@ -11,7 +10,6 @@ https://www.52pojie.cn/forum.php?mod=forumdisplay&fid=66&filter=typeid&typeid=34
 https://www.52pojie.cn/forum.php?mod=forumdisplay&fid=66&filter=typeid&typeid=346&orderby=dateline
 https://www.52pojie.cn/forum-21-1.html
 https://www.52pojie.cn/forum.php?mod=forumdisplay&fid=24&filter=typeid&typeid=29
-https://www.1point3acres.com/bbs/forum-128-1.html
 https://outlook.live.com/owa/
 https://mail.google.com/mail/u/1/#inbox
 https://www.instagram.com/
@@ -20,4 +18,6 @@ http://megafunpro.com/forum-158-1.html
 http://megafunpro.com/forum-56-1.html
 http://megafunpro.com/forum-375-1.html
 https://v.gimy.tv/
+https://onehack.us
 http://www.menshealth.co.uk/
+https://ithelp.ithome.com.tw/
