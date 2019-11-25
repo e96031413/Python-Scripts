@@ -1,11 +1,9 @@
 http://feedly.com/i/welcome
-https://www.chromeba.net/
 https://getpocket.com/a/queue/
 https://www.facebook.com/
 https://www.youtube.com/feed/subscriptions
 https://apk.tw/forum.php
-https://www.zeczec.com/
-https://www.lynda.com/portal/patron?org=freelibrary.org&triedlogout=true
+https://www.lynda.com/portal/patron?org=rodmanlibrary.com
 https://www.52pojie.cn/forum-66-1.html
 https://www.52pojie.cn/forum.php?mod=forumdisplay&fid=66&filter=typeid&typeid=347&orderby=dateline
 https://www.52pojie.cn/forum.php?mod=forumdisplay&fid=66&filter=typeid&typeid=346&orderby=dateline
@@ -20,5 +18,4 @@ http://megafunpro.com/forum-56-1.html
 http://megafunpro.com/forum-375-1.html
 https://v.gimy.tv/
 https://onehack.us
-http://www.menshealth.co.uk/
 https://ithelp.ithome.com.tw/
