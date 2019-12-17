@@ -34,12 +34,3 @@ for i in range(1,25):
 	job_salary = driver.find_element_by_xpath('//*[@id="js-job-content"]/article[%d]/div[1]/div/span[1]' %(i)).text
 	print('薪水:' + job_salary)
 	print('\n')
-
-
-	
-
-
-#print('職缺連結:' + job_link)
-#print(job_link.get_text())
-
-#b-block__left
