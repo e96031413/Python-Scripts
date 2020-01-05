@@ -5,7 +5,7 @@
 - [X] 1.加入保存成TXT的功能
 - [X] 2.新增翻頁功能(目前能翻到第三頁，我認為已經足夠)
 - [X] 3.完成README的文檔
-- [ ] 4.加入CLI功能
+- [X] 4.加入CLI功能
 - [ ] 5.加入GUI介面(tkinter or electron?)
 - [ ] 6.打包成.exe
 - [ ] 7.部屬成LINE機器人(Heroku)
