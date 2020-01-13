@@ -7,8 +7,7 @@
 - [X] 3.完成README的文檔
 - [X] 4.加入CLI功能
 - [X] 5.變成Django網頁 [https://github.com/e96031413/104-Django-APP]
-- [ ] 6.打包成.exe
-- [ ] 7.部屬成LINE機器人(Heroku)
+- [ ] 6.部屬成LINE機器人(Heroku)
 
 ## 使用方式
 
