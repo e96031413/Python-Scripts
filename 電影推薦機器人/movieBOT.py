@@ -17,7 +17,7 @@ prefs = {
 }
 options.add_experimental_option('prefs',prefs)
 options.add_argument("--incognito")           #開啟無痕模式
-driver_path =r'C:\Users\Administrator\chromedriver.exe'
+driver_path ='chromedriver.exe'
 driver = webdriver.Chrome(driver_path,options=options)
 
 driver.get("https://www.suggestmemovie.com/") 
