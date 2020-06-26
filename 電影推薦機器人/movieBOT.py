@@ -23,9 +23,9 @@ driver = webdriver.Chrome(driver_path,options=options)
 driver.get("https://www.suggestmemovie.com/") 
 
 #用xpath找電影名稱、簡介、IMDB的評分
-MovieName = driver.find_element_by_xpath('/html/body/div[1]/div/div/div[4]/div/div[1]/div[1]').text
-Description = driver.find_element_by_xpath('/html/body/div[1]/div/div/div[4]/div/div[1]/div[2]/p').text
-score = driver.find_element_by_xpath('/html/body/div[1]/div/div/div[3]/div[1]/div/div[2]/h1').text
+MovieName = driver.find_element_by_xpath('/html/body/div[1]/div/div/div[1]/div[2]/div[1]/div[1]/div[1]/div/h1').text
+Description = driver.find_element_by_xpath('/html/body/div[1]/div/div/div[1]/div[2]/div[4]/div/div[1]/div[2]/p').text
+score = driver.find_element_by_xpath('/html/body/div[1]/div/div/div[1]/div[2]/div[3]/div[1]/div/div[2]/h1').text
 
 #用PyAutoGUI到Youtube取得預告片網址
 driver.get("https://www.youtube.com/results?search_query=" + MovieName +" trailer") 
