@@ -14,7 +14,7 @@ options.add_experimental_option('prefs',prefs)
 options.add_argument("--headless")            #不開啟實體瀏覽器背景執行
 options.add_argument("--incognito")           #開啟無痕模式
 
-driver_path ='chromedriver.exe'
+driver_path =r'C:\Users\e96031413\chromedriver.exe'
 driver = webdriver.Chrome(driver_path,options=options)
 
 driver.get("https://www.cwb.gov.tw/V8/C/W/Town/Town.html?TID=6400900")
@@ -37,5 +37,5 @@ def lineNotifyMessage(token, msg):
     return r.status_code
   # 修改為你要傳送的訊息內容
   # 修改為你的權杖內容
-token = 'XXXXXXXX'
+token = 'OCLxwpzP2IgEnJ7pYrYbD'
 lineNotifyMessage(token, content)
