@@ -2,6 +2,7 @@ http://feedly.com/i/welcome
 https://getpocket.com/a/queue/
 https://www.facebook.com/
 https://www.youtube.com/feed/subscriptions
+https://www.notion.so/e96031413/
 https://apk.tw/forum.php
 https://www.linkedin.com/notifications/
 https://www.lynda.com/portal/sip?org=detroitpubliclibrary.org
@@ -14,6 +15,7 @@ http://megafunpro.com/forum-158-1.html
 http://megafunpro.com/forum-56-1.html
 http://megafunpro.com/forum-375-1.html
 https://ithelp.ithome.com.tw/
+https://beta.stoopinbox.com/
 https://www.tenlong.com.tw/zh_tw/recent
 https://career.ntu.edu.tw/board/index
 https://ccd-osa.nsysu.edu.tw/
@@ -22,5 +24,3 @@ https://career.sa.nctu.edu.tw/?page_id=1386
 http://career.site.nthu.edu.tw/
 https://www.cmoney.tw/follow/channel/mystock
 https://ai.acer-ast.com:32000/portal2/account/login
-https://www.reddit.com/r/DeepLearningPapers/new/
-https://www.reddit.com/r/LatestInML/new/
