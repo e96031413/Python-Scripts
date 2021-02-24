@@ -4,10 +4,8 @@ import twder
 USD=twder.now('USD')
 EUR=twder.now('EUR')
 CNY=twder.now('CNY')
-#JPY=twder.now('JPY')
-#KRW=twder.now('KRW')
-
-
+JPY=twder.now('JPY')
+KRW=twder.now('KRW')
 
 def send_ifttt(v1,v2,v3):   # 定義函式來向 IFTTT 發送 HTTP 要求
     url = ('https://maker.ifttt.com/trigger/currency/with/' +
@@ -22,5 +20,3 @@ def send_ifttt(v1,v2,v3):   # 定義函式來向 IFTTT 發送 HTTP 要求
 
 ret = send_ifttt(USD,EUR,CNY)  #傳送 HTTP 請求到 IFTTT
 print('IFTTT 的回應訊息：',ret)     # 輸出 IFTTT 回應的文字
-
-
