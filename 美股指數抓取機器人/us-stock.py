@@ -35,7 +35,7 @@ SP500_scale = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]
 
 SOX = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[3]/td[2]/a").text
 SOX_price = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[3]/td[3]/span").text
-SOX_scale_price = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[2]/td[4]/span").text
+SOX_scale_price = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[3]/td[4]/span").text
 SOX_scale = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[3]/td[5]/span").text
 
 NASDAQ = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[4]/td[2]/a").text
