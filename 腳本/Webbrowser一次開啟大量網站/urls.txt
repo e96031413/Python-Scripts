@@ -32,3 +32,4 @@ https://coinmarketcap.com/zh-tw/
 https://www.lookintobitcoin.com/charts/mvrv-zscore/
 https://www.google.com/maps/d/u/0/viewer?hl=zh-TW&ll=25.034793245541128%2C121.53848537862086&mid=10TfvVgBJ__iAkKMI9DObANFbfCrFV6nk&z=13
 https://nidss.cdc.gov.tw/nndss/DiseaseMap?id=19CoV
+https://kiang.github.io/covid19/
