@@ -36,4 +36,5 @@ https://www.google.com/maps/d/u/0/viewer?hl=zh-TW&ll=25.034793245541128%2C121.53
 https://nidss.cdc.gov.tw/nndss/DiseaseMap?id=19CoV
 https://public.tableau.com/app/profile/tainan/viz/COVID19-_16220813360970/1_1
 https://www.binance.com/zh-TW/eth2
+https://tradingeconomics.com/commodities
 https://www.youtube.com/watch?v=PdqPkKFEvyQ
