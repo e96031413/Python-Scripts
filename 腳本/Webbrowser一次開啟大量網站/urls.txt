@@ -35,3 +35,4 @@ https://www.lookintobitcoin.com/charts/mvrv-zscore/
 https://nidss.cdc.gov.tw/nndss/DiseaseMap?id=19CoV
 https://public.tableau.com/app/profile/tainan/viz/COVID19-_16220813360970/1_1
 https://tradingeconomics.com/commodities
+https://andyshiu.github.io/SuperCryptoTools/index.html
