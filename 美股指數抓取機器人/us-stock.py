@@ -23,25 +23,25 @@ options.add_argument("--headless")            #不開啟實體瀏覽器背景執
 browser=webdriver.Chrome(driver_path,options=options)
 browser.get(url)
 
-DJI = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[1]/td[2]/a").text
-DJI_price = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[1]/td[3]/span").text
-DJI_scale_price = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[1]/td[4]/span").text
-DJI_scale = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[1]/td[5]/span").text
+DJI = browser.find_element_by_xpath("/html/body/div/div/div[3]/div[9]/div[1]/div/section[2]/div[2]/div/div/table/tbody/tr[1]/td[2]/a").text
+DJI_price = browser.find_element_by_xpath("/html/body/div/div/div[3]/div[9]/div[1]/div/section[2]/div[2]/div/div/table/tbody/tr[1]/td[3]/span").text
+DJI_scale_price = browser.find_element_by_xpath("/html/body/div/div/div[3]/div[9]/div[1]/div/section[2]/div[2]/div/div/table/tbody/tr[1]/td[4]").text
+DJI_scale = browser.find_element_by_xpath("/html/body/div/div/div[3]/div[9]/div[1]/div/section[2]/div[2]/div/div/table/tbody/tr[1]/td[5]/span").text
 
-SP500 = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[2]/td[2]/a").text
-SP500_price = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[2]/td[3]/span").text
-SP500_scale_price = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[2]/td[4]/span").text
-SP500_scale = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[2]/td[5]/span").text
+SP500 = browser.find_element_by_xpath("/html/body/div/div/div[3]/div[9]/div[1]/div/section[2]/div[2]/div/div/table/tbody/tr[3]/td[2]/a").text
+SP500_price = browser.find_element_by_xpath("/html/body/div/div/div[3]/div[9]/div[1]/div/section[2]/div[2]/div/div/table/tbody/tr[3]/td[3]/span").text
+SP500_scale_price = browser.find_element_by_xpath("/html/body/div/div/div[3]/div[9]/div[1]/div/section[2]/div[2]/div/div/table/tbody/tr[3]/td[4]/span").text
+SP500_scale = browser.find_element_by_xpath("/html/body/div/div/div[3]/div[9]/div[1]/div/section[2]/div[2]/div/div/table/tbody/tr[3]/td[5]/span").text
 
-SOX = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[3]/td[2]/a").text
-SOX_price = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[3]/td[3]/span").text
-SOX_scale_price = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[3]/td[4]/span").text
-SOX_scale = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[3]/td[5]/span").text
+SOX = browser.find_element_by_xpath("/html/body/div/div/div[3]/div[9]/div[1]/div/section[2]/div[2]/div/div/table/tbody/tr[4]/td[2]").text
+SOX_price = browser.find_element_by_xpath("/html/body/div/div/div[3]/div[9]/div[1]/div/section[2]/div[2]/div/div/table/tbody/tr[4]/td[3]/span").text
+SOX_scale_price = browser.find_element_by_xpath("/html/body/div/div/div[3]/div[9]/div[1]/div/section[2]/div[2]/div/div/table/tbody/tr[4]/td[4]").text
+SOX_scale = browser.find_element_by_xpath("/html/body/div/div/div[3]/div[9]/div[1]/div/section[2]/div[2]/div/div/table/tbody/tr[4]/td[5]/span").text
 
-NASDAQ = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[4]/td[2]/a").text
-NASDAQ_price = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[4]/td[3]/span").text
-NASDAQ_scale_price = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[4]/td[4]").text
-NASDAQ_scale = browser.find_element_by_xpath("/html/body/div[1]/div/div[3]/div[5]/div/section[2]/div[2]/div/div/table/tbody/tr[4]/td[5]").text
+NASDAQ = browser.find_element_by_xpath("/html/body/div/div/div[3]/div[9]/div[1]/div/section[2]/div[2]/div/div/table/tbody/tr[2]/td[2]").text
+NASDAQ_price = browser.find_element_by_xpath("/html/body/div/div/div[3]/div[9]/div[1]/div/section[2]/div[2]/div/div/table/tbody/tr[2]/td[3]/span").text
+NASDAQ_scale_price = browser.find_element_by_xpath("/html/body/div/div/div[3]/div[9]/div[1]/div/section[2]/div[2]/div/div/table/tbody/tr[2]/td[4]/span").text
+NASDAQ_scale = browser.find_element_by_xpath("/html/body/div/div/div[3]/div[9]/div[1]/div/section[2]/div[2]/div/div/table/tbody/tr[2]/td[5]/span").text
 
 content = "\n\n" + DJI + "  ,"+DJI_price + "  ," + DJI_scale_price +  "  ,"+ DJI_scale + "\n\n" + SP500 + "  ,"+ SP500_price + "  ,"+ SP500_scale_price + "  ,"+ SP500_scale + "\n\n" + SOX + "  ,"+ SOX_price + "  ,"+ SOX_scale_price + "  ,"+ SOX_scale + "\n\n" + NASDAQ + "  ," + NASDAQ_price + "  ," + NASDAQ_scale_price + "  ," + NASDAQ_scale
 browser.close()
