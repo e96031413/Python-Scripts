@@ -1,4 +1,5 @@
 https://github.com/TSiege/Tech-Interview-Cheat-Sheet
+http://cs229.stanford.edu/syllabus-spring2021.html
 http://feedly.com/i/welcome
 https://getpocket.com/a/queue/
 https://www.facebook.com/
