@@ -1,4 +1,13 @@
 https://github.com/TSiege/Tech-Interview-Cheat-Sheet
+https://mropengate.blogspot.com/2017/08/cc-c.html
+http://alrightchiu.github.io/SecondRound/mu-lu-yan-suan-fa-yu-zi-liao-jie-gou.html
+https://mropengate.blogspot.com/2017/09/operating-system-concepts.html
+https://mropengate.blogspot.com/search/label/Software%20Development-Linux%2FUnix
+https://mropengate.blogspot.com/2015/09/sql.html
+https://mropengate.blogspot.com/search/label/Computer%20Science-Computer%20%20Organization
+https://mropengate.blogspot.com/search/label/Computer%20Science-Linear%20Algebra
+https://mropengate.blogspot.com/search/label/Computer%20Science-Data%20Structure
+https://mropengate.blogspot.com/search/label/Computer%20Science-Algorithm
 http://cs229.stanford.edu/syllabus-spring2021.html
 http://feedly.com/i/welcome
 https://getpocket.com/a/queue/
