@@ -1,3 +1,5 @@
+https://www.programiz.com/dsa/master-theorem
+https://www.youtube.com/playlist?list=PL4YhK0pT0ZhVf4nIsEjcRT5K47K7WH76P
 https://github.com/TSiege/Tech-Interview-Cheat-Sheet
 https://mropengate.blogspot.com/2017/08/cc-c.html
 https://web.ntnu.edu.tw/~algo/
@@ -5,7 +7,6 @@ http://alrightchiu.github.io/SecondRound/mu-lu-yan-suan-fa-yu-zi-liao-jie-gou.ht
 https://mropengate.blogspot.com/2017/09/operating-system-concepts.html
 https://mropengate.blogspot.com/search/label/Software%20Development-Linux%2FUnix
 https://mropengate.blogspot.com/2015/09/sql.html
-https://mropengate.blogspot.com/search/label/Computer%20Science-Computer%20%20Organization
 https://mropengate.blogspot.com/search/label/Computer%20Science-Linear%20Algebra
 https://mropengate.blogspot.com/search/label/Computer%20Science-Data%20Structure
 https://mropengate.blogspot.com/search/label/Computer%20Science-Algorithm
@@ -43,12 +44,7 @@ http://career.site.nthu.edu.tw/
 https://www.cmoney.tw/follow/channel/mystock
 https://ai.acer-ast.com:32000/portal2/account/login
 https://www.blink.com.tw/board/#/new
-https://arxiv.xixiaoyao.cn/
-https://pyinvesting.com/fear-and-greed/
 https://coinmarketcap.com/zh-tw/
-https://www.lookintobitcoin.com/charts/mvrv-zscore/
-https://nidss.cdc.gov.tw/nndss/DiseaseMap?id=19CoV
-https://public.tableau.com/app/profile/tainan/viz/COVID19-_16220813360970/1_1
 https://tradingeconomics.com/commodities
 https://andyshiu.github.io/SuperCryptoTools/index.html
 https://www.trackawesomelist.com/
