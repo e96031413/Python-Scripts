@@ -1,7 +1,6 @@
 https://www.programiz.com/dsa/types-of-queue
 https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU
 https://github.com/TSiege/Tech-Interview-Cheat-Sheet
-https://mropengate.blogspot.com/2017/08/cc-c.html
 https://web.ntnu.edu.tw/~algo/
 http://alrightchiu.github.io/SecondRound/mu-lu-yan-suan-fa-yu-zi-liao-jie-gou.html
 https://mropengate.blogspot.com/2017/09/operating-system-concepts.html
