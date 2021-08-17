@@ -1,4 +1,5 @@
-https://www.programiz.com/dsa/types-of-queue
+https://www.programiz.com/dsa/linked-list-types
+https://www.mvdis.gov.tw/m3-simulator-drv/index.zul
 https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU
 https://github.com/TSiege/Tech-Interview-Cheat-Sheet
 https://web.ntnu.edu.tw/~algo/
@@ -6,11 +7,8 @@ http://alrightchiu.github.io/SecondRound/mu-lu-yan-suan-fa-yu-zi-liao-jie-gou.ht
 https://mropengate.blogspot.com/2017/09/operating-system-concepts.html
 https://mropengate.blogspot.com/2018/01/linuxunix-cheat-sheet-for-linuxunix.html
 https://mropengate.blogspot.com/2015/09/sql.html
-https://mropengate.blogspot.com/search/label/Computer%20Science-Linear%20Algebra
-https://mropengate.blogspot.com/search/label/Computer%20Science-Data%20Structure
-https://mropengate.blogspot.com/search/label/Computer%20Science-Algorithm
-http://cs229.stanford.edu/syllabus-autumn2018.html
 https://stanford.edu/~shervine/teaching/cs-229/
+https://www.synckeys.com/
 http://feedly.com/i/welcome
 https://getpocket.com/a/queue/
 https://www.facebook.com/
