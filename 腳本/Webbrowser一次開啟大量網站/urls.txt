@@ -1,4 +1,4 @@
-https://www.programiz.com/dsa/linked-list-types
+https://www.programiz.com/dsa/heap-data-structure
 https://www.mvdis.gov.tw/m3-simulator-drv/index.zul
 https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU
 https://github.com/TSiege/Tech-Interview-Cheat-Sheet
@@ -47,3 +47,4 @@ https://andyshiu.github.io/SuperCryptoTools/index.html
 https://www.trackawesomelist.com/
 https://www.binance.com/zh-TW/my/pnl/spot_account
 https://www.getabstract.com/
+https://shopee.tw/e96031413
