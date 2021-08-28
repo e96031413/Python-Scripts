@@ -1,5 +1,4 @@
 https://www.programiz.com/dsa/heap-data-structure
-https://www.mvdis.gov.tw/m3-simulator-drv/index.zul
 https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU
 https://github.com/TSiege/Tech-Interview-Cheat-Sheet
 https://web.ntnu.edu.tw/~algo/
@@ -48,3 +47,4 @@ https://www.trackawesomelist.com/
 https://www.binance.com/zh-TW/my/pnl/spot_account
 https://www.getabstract.com/
 https://shopee.tw/e96031413
+https://tainanshopping.tw/
