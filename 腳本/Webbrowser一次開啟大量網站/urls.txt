@@ -1,7 +1,6 @@
+http://klib.me/weread/hot/all.html
 https://www.programiz.com/dsa/heap-data-structure
-https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU
 https://github.com/TSiege/Tech-Interview-Cheat-Sheet
-https://web.ntnu.edu.tw/~algo/
 http://alrightchiu.github.io/SecondRound/mu-lu-yan-suan-fa-yu-zi-liao-jie-gou.html
 https://mropengate.blogspot.com/2017/09/operating-system-concepts.html
 https://mropengate.blogspot.com/2018/01/linuxunix-cheat-sheet-for-linuxunix.html
