@@ -1,15 +1,8 @@
 https://calendar.google.com/calendar/u/0/r/month
 http://klib.me/weread/hot/all.html
-https://hackmd.io/@6PPVul2mS7OX2GuGXlUCDA/behavior_questions#%E3%80%90%E5%BF%85%E5%95%8F%E9%A1%8C%E3%80%91
-https://yschen25.blogspot.com/2021/01/programmer-interview-question-collection-preparation.html
 https://www.programiz.com/dsa/heap-data-structure
-https://github.com/TSiege/Tech-Interview-Cheat-Sheet
 http://alrightchiu.github.io/SecondRound/mu-lu-yan-suan-fa-yu-zi-liao-jie-gou.html
 https://mropengate.blogspot.com/2017/09/operating-system-concepts.html
-https://mropengate.blogspot.com/2018/01/linuxunix-cheat-sheet-for-linuxunix.html
-https://mropengate.blogspot.com/2015/09/sql.html
-https://stanford.edu/~shervine/teaching/cs-229/
-https://www.synckeys.com/
 http://feedly.com/i/welcome
 https://getpocket.com/a/queue/
 https://www.facebook.com/
@@ -19,8 +12,6 @@ https://www.diigo.com/user/e96031413
 https://www.notion.so/e96031413/
 https://apk.tw/forum.php
 https://apk.tw/home.php?mod=space&uid=3096847&do=thread&view=me&from=space
-https://www.tianlangbooks.com/
-https://1lib.tw/recently.php?language=chinese
 https://www.linkedin.com/notifications/
 https://www.52pojie.cn/forum.php?mod=forumdisplay&fid=24&filter=typeid&typeid=29
 https://outlook.live.com/owa/
