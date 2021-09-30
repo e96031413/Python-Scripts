@@ -1,4 +1,6 @@
 https://calendar.google.com/calendar/u/0/r/month
+https://www.coursera.org/learn/comparch/home/welcome
+https://www.coursera.org/learn/os-pku/home/welcome
 http://klib.me/weread/hot/all.html
 https://www.programiz.com/dsa/heap-data-structure
 http://alrightchiu.github.io/SecondRound/mu-lu-yan-suan-fa-yu-zi-liao-jie-gou.html
