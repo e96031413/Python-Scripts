@@ -1,9 +1,6 @@
 https://calendar.google.com/calendar/u/0/r/month
-https://www.coursera.org/learn/os-pku/home/welcome
 http://klib.me/weread/hot/all.html
 https://www.programiz.com/dsa/heap-data-structure
-http://alrightchiu.github.io/SecondRound/mu-lu-yan-suan-fa-yu-zi-liao-jie-gou.html
-https://mropengate.blogspot.com/2017/09/operating-system-concepts.html
 http://feedly.com/i/welcome
 https://getpocket.com/a/queue/
 https://www.facebook.com/
@@ -13,7 +10,6 @@ https://www.diigo.com/user/e96031413
 https://www.notion.so/e96031413/
 https://apk.tw/forum.php
 https://www.linkedin.com/notifications/
-https://www.52pojie.cn/forum.php?mod=forumdisplay&fid=24&filter=typeid&typeid=29
 https://outlook.live.com/owa/
 https://mail.google.com/mail/u/0/#inbox
 https://health010.tw/
@@ -30,10 +26,8 @@ https://ccd-osa.nsysu.edu.tw/
 http://grad.osa.ncku.edu.tw/
 https://career.sa.nctu.edu.tw/?page_id=1386
 https://goodjob-nthu.conf.asia/
-https://www.cmoney.tw/follow/channel/mystock
 https://ai.acer-ast.com:32000/portal2/account/login
 https://www.blink.com.tw/board/#/new
-https://companiesmarketcap.com/assets-by-market-cap/
 https://www.livecoinwatch.com/
 https://shopee.tw/e96031413
 https://tainanshopping.tw/
