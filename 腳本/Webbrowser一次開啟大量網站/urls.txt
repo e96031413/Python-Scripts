@@ -23,7 +23,7 @@ https://beta.stoopinbox.com/
 https://www.tenlong.com.tw/zh_tw/recent
 https://career.ntu.edu.tw/board/index
 https://ccd-osa.nsysu.edu.tw/
-http://grad.osa.ncku.edu.tw/
+https://grad-osa.ncku.edu.tw/
 https://career.sa.nctu.edu.tw/?page_id=1386
 https://goodjob-nthu.conf.asia/
 https://ai.acer-ast.com:32000/portal2/account/login
