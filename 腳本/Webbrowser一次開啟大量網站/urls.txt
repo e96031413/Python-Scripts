@@ -1,5 +1,6 @@
 https://calendar.google.com/calendar/u/0/r/month
-http://klib.me/weread/hot/all.html
+https://deepstash.com/
+https://bookstash.io/
 https://www.programiz.com/dsa/heap-data-structure
 http://feedly.com/i/welcome
 https://getpocket.com/a/queue/
