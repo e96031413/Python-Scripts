@@ -18,3 +18,5 @@ https://1lib.tw/s/?q=%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6%E5%87%BA%E7%89%88%E7%A
 https://1lib.tw/s/?q=%E7%94%B5%E5%AD%90%E5%B7%A5%E4%B8%9A%E5%87%BA%E7%89%88%E7%A4%BE&order=date
 https://apk.tw/home.php?mod=space&uid=4127770&do=thread&view=me&from=space
 https://apk.tw/home.php?mod=space&uid=1762&do=thread&view=me&from=space
+https://nycu.ebook.hyread.com.tw/searchList.jsp?pagesize=30&sortinfo=YEAR,1&search_field=BSU&search_input=all&theme=&target=lib&pagesize=30&viewtype=2&filter=1&scope=2&isRental=0
+https://nycu.ebook.hyread.com.tw/Template/RWD3.0/magazine_view_more.jsp
