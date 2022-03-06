@@ -20,3 +20,4 @@ https://apk.tw/home.php?mod=space&uid=4127770&do=thread&view=me&from=space
 https://apk.tw/home.php?mod=space&uid=1762&do=thread&view=me&from=space
 https://nycu.ebook.hyread.com.tw/searchList.jsp?pagesize=30&sortinfo=YEAR,1&search_field=BSU&search_input=all&theme=&target=lib&pagesize=30&viewtype=2&filter=1&scope=2&isRental=0
 https://nycu.ebook.hyread.com.tw/Template/RWD3.0/magazine_view_more.jsp
+http://lib.ebookservice.tw/tn/#new-arrival
