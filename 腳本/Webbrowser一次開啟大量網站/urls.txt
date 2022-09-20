@@ -3,10 +3,8 @@ http://feedly.com/i/welcome
 https://getpocket.com/a/queue/
 https://www.facebook.com/
 https://www.youtube.com/feed/subscriptions
-https://space.bilibili.com/562085182/dynamic
 https://www.diigo.com/user/e96031413
 https://www.notion.so/e96031413/
-https://apk.tw/forum.php
 https://www.linkedin.com/notifications/
 https://outlook.live.com/owa/
 https://mail.google.com/mail/u/0/#inbox
@@ -15,7 +13,6 @@ http://megafunpro.com/forum-376-1.html
 http://megafunpro.com/forum-158-1.html
 http://megafunpro.com/forum-56-1.html
 http://megafunpro.com/forum-375-1.html
-https://ithelp.ithome.com.tw/
 https://beta.stoopinbox.com/
 https://www.tenlong.com.tw/zh_tw/recent
 https://career.ntu.edu.tw/board/index
@@ -24,11 +21,7 @@ https://grad-osa.ncku.edu.tw/
 https://osa.nycu.edu.tw/career
 https://goodjob-nthu.conf.asia/
 https://www.gq.com.tw/
-https://ai.acer-ast.com:32000/portal2/account/login
 https://www.livecoinwatch.com/
-https://shopee.tw/e96031413
+https://shopee.tw/shopee-coins
 https://cryptowesearch.com/blog/all
-https://catcat.pro/
-https://www.defi.to/cn/
 https://www.managertoday.com.tw/eightylife
-https://github.com/yandexdataschool/deep_vision_and_graphics
