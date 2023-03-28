@@ -2,7 +2,7 @@ import whisper
 import openai
 import os
 
-openai.api_key = "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" 
+openai.api_key = "XXXXXXXXXXXXXXXX" 
 
 # input audio file name
 audio_file = "C://Users/e96031413/Desktop/test.mp3"
