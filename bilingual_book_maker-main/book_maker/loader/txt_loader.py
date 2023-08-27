@@ -18,12 +18,16 @@ class TXTBookLoader(BaseBookLoader):
         is_test=False,
         test_num=5,
         prompt_config=None,
-    ):
+        single_translate=False,
+        context_flag=False,
+        temperature=1.0,
+    ) -> None:
         self.txt_name = txt_name
         self.translate_model = model(
             key,
             language,
             api_base=model_api_base,
+            temperature=temperature,
             **prompt_config_to_kwargs(prompt_config),
         )
         self.is_test = is_test
@@ -32,13 +36,14 @@ class TXTBookLoader(BaseBookLoader):
         self.bilingual_temp_result = []
         self.test_num = test_num
         self.batch_size = 10
+        self.single_translate = single_translate
 
         try:
-            with open(f"{txt_name}", "r", encoding="utf-8") as f:
-                self.origin_book = f.read().split("\n")
+            with open(f"{txt_name}", encoding="utf-8") as f:
+                self.origin_book = f.read().splitlines()
 
-        except Exception:
-            raise Exception("can not load file")
+        except Exception as e:
+            raise Exception("can not load file") from e
 
         self.resume = resume
         self.bin_path = f"{Path(txt_name).parent}/.{Path(txt_name).stem}.temp.bin"
@@ -65,16 +70,15 @@ class TXTBookLoader(BaseBookLoader):
                 batch_text = "".join(i)
                 if self._is_special_text(batch_text):
                     continue
-                if self.resume and index < p_to_save_len:
-                    pass
-                else:
+                if not self.resume or index >= p_to_save_len:
                     try:
                         temp = self.translate_model.translate(batch_text)
                     except Exception as e:
-                        print(str(e))
-                        raise Exception("Something is wrong when translate")
+                        print(e)
+                        raise Exception("Something is wrong when translate") from e
                     self.p_to_save.append(temp)
-                    self.bilingual_result.append(batch_text)
+                    if not self.single_translate:
+                        self.bilingual_result.append(batch_text)
                     self.bilingual_result.append(temp)
                 index += self.batch_size
                 if self.is_test and index > self.test_num:
@@ -115,17 +119,17 @@ class TXTBookLoader(BaseBookLoader):
 
     def _save_progress(self):
         try:
-            with open(self.bin_path, "w") as f:
+            with open(self.bin_path, "w", encoding="utf-8") as f:
                 f.write("\n".join(self.p_to_save))
         except:
             raise Exception("can not save resume file")
 
     def load_state(self):
         try:
-            with open(self.bin_path, "r", encoding="utf-8") as f:
-                self.p_to_save = f.read().split("\n")
-        except Exception:
-            raise Exception("can not load resume file")
+            with open(self.bin_path, encoding="utf-8") as f:
+                self.p_to_save = f.read().splitlines()
+        except Exception as e:
+            raise Exception("can not load resume file") from e
 
     def save_file(self, book_path, content):
         try:

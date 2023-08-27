@@ -5,7 +5,7 @@ from rich import print
 from .base_translator import Base
 
 
-class GPT3(Base):
+class Claude(Base):
     def __init__(
         self,
         key,
@@ -17,29 +17,30 @@ class GPT3(Base):
     ) -> None:
         super().__init__(key, language)
         self.api_url = (
-            f"{api_base}v1/completions"
+            f"{api_base}v1/complete"
             if api_base
-            else "https://api.openai.com/v1/completions"
+            else "https://api.anthropic.com/v1/complete"
         )
         self.headers = {
             "Content-Type": "application/json",
+            "x-api-key": key,
         }
-        # TODO support more models here
         self.data = {
             "prompt": "",
-            "model": "text-davinci-003",
-            "max_tokens": 1024,
+            "model": "claude-v1.3",
+            "max_tokens_to_sample": 1024,
             "temperature": temperature,
-            "top_p": 1,
+            "stop_sequences": ["\n\nHuman:"],
         }
         self.session = requests.session()
         self.language = language
         self.prompt_template = (
-            prompt_template or "Please help me to translate, `{text}` to {language}"
+            prompt_template
+            or "\n\nHuman: Help me translate the text within triple backticks into {language} and provide only the translated result.\n```{text}```\n\nAssistant: "
         )
 
     def rotate_key(self):
-        self.headers["Authorization"] = f"Bearer {next(self.keys)}"
+        pass
 
     def translate(self, text):
         print(text)
@@ -51,6 +52,7 @@ class GPT3(Base):
         r = self.session.post(self.api_url, headers=self.headers, json=self.data)
         if not r.ok:
             return text
-        t_text = r.json().get("choices")[0].get("text", "").strip()
+        t_text = r.json().get("completion").strip()
+
         print("[bold green]" + re.sub("\n{3,}", "\n\n", t_text) + "[/bold green]")
         return t_text

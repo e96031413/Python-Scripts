@@ -29,6 +29,9 @@ class EPUBBookLoader(BaseBookLoader):
         is_test=False,
         test_num=5,
         prompt_config=None,
+        single_translate=False,
+        context_flag=False,
+        temperature=1.0,
     ):
         self.epub_name = epub_name
         self.new_epub = epub.EpubBook()
@@ -36,20 +39,30 @@ class EPUBBookLoader(BaseBookLoader):
             key,
             language,
             api_base=model_api_base,
+            context_flag=context_flag,
+            temperature=temperature,
             **prompt_config_to_kwargs(prompt_config),
         )
         self.is_test = is_test
         self.test_num = test_num
         self.translate_tags = "p"
+        self.exclude_translate_tags = "sup"
         self.allow_navigable_strings = False
         self.accumulated_num = 1
         self.translation_style = ""
+        self.context_flag = context_flag
         self.helper = EPUBBookLoaderHelper(
-            self.translate_model, self.accumulated_num, self.translation_style
+            self.translate_model,
+            self.accumulated_num,
+            self.translation_style,
+            self.context_flag,
         )
         self.retranslate = None
+        self.exclude_filelist = ""
+        self.only_filelist = ""
+        self.single_translate = single_translate
 
-        # monkey pathch for # 173
+        # monkey patch for # 173
         def _write_items_patch(obj):
             for item in obj.book.get_items():
                 if isinstance(item, epub.EpubNcx):
@@ -73,7 +86,7 @@ class EPUBBookLoader(BaseBookLoader):
         try:
             self.origin_book = epub.read_epub(self.epub_name)
         except Exception:
-            # tricky monkey pathch for #71 if you don't know why please check the issue and ignore this
+            # tricky monkey patch for #71 if you don't know why please check the issue and ignore this
             # when upstream change will TODO fix this
             def _load_spine(obj):
                 spine = obj.container.find("{%s}%s" % (epub.NAMESPACES["OPF"], "spine"))
@@ -114,19 +127,29 @@ class EPUBBookLoader(BaseBookLoader):
 
         new_p = copy(p)
 
+        for p_exclude in self.exclude_translate_tags.split(","):
+            # for issue #280
+            if type(p) == NavigableString:
+                continue
+            for pt in new_p.find_all(p_exclude):
+                pt.extract()
+
         if self.resume and index < p_to_save_len:
             new_p.string = self.p_to_save[index]
         else:
             if type(p) == NavigableString:
-                new_p = self.translate_model.translate(p.text)
+                new_p = self.translate_model.translate(new_p.text)
                 self.p_to_save.append(new_p)
             else:
-                new_p.string = self.translate_model.translate(p.text)
+                new_p.string = self.translate_model.translate(new_p.text)
                 self.p_to_save.append(new_p.text)
 
-        self.helper.insert_trans(p, new_p.string, self.translation_style)
+        self.helper.insert_trans(
+            p, new_p.string, self.translation_style, self.single_translate
+        )
         p.extract()
         index += 1
+
         if index % 20 == 0:
             self._save_progress()
 
@@ -138,24 +161,30 @@ class EPUBBookLoader(BaseBookLoader):
         for i in range(len(p_list)):
             p = p_list[i]
             temp_p = copy(p)
-            for sup in temp_p.find_all("sup"):
-                sup.extract()
+
+            for p_exclude in self.exclude_translate_tags.split(","):
+                # for issue #280
+                if type(p) == NavigableString:
+                    continue
+                for pt in temp_p.find_all(p_exclude):
+                    pt.extract()
+
             if any(
                 [not p.text, self._is_special_text(temp_p.text), not_trans(temp_p.text)]
             ):
                 if i == len(p_list) - 1:
-                    self.helper.deal_old(wait_p_list)
+                    self.helper.deal_old(wait_p_list, self.single_translate)
                 continue
             length = num_tokens_from_text(temp_p.text)
             if length > send_num:
-                self.helper.deal_new(p, wait_p_list)
+                self.helper.deal_new(p, wait_p_list, self.single_translate)
                 continue
             if i == len(p_list) - 1:
                 if count + length < send_num:
                     wait_p_list.append(p)
-                    self.helper.deal_old(wait_p_list)
+                    self.helper.deal_old(wait_p_list, self.single_translate)
                 else:
-                    self.helper.deal_new(p, wait_p_list)
+                    self.helper.deal_new(p, wait_p_list, self.single_translate)
                 break
             if count + length < send_num:
                 count += length
@@ -165,7 +194,7 @@ class EPUBBookLoader(BaseBookLoader):
                 #     self.helper.deal_old(wait_p_list)
                 #     count = 0
             else:
-                self.helper.deal_old(wait_p_list)
+                self.helper.deal_old(wait_p_list, self.single_translate)
                 wait_p_list.append(p)
                 count = length
 
@@ -254,16 +283,16 @@ class EPUBBookLoader(BaseBookLoader):
                 break
 
         for t in extract_p_list_ori:
-            target.insert_after(t)
-            target = t
+            if target:
+                target.insert_after(t)
+                target = t
 
         for item in complete_book.get_items():
             if item.file_name != fixname:
                 new_book.add_item(item)
+        if soup_complete:
+            complete_item.content = soup_complete.encode()
 
-        complete_item.content = soup_complete.encode()
-
-        # =================================================
         index = self.process_item(
             complete_item,
             index,
@@ -300,6 +329,16 @@ class EPUBBookLoader(BaseBookLoader):
         fixstart=None,
         fixend=None,
     ):
+        if self.only_filelist != "" and not item.file_name in self.only_filelist.split(
+            ","
+        ):
+            return index
+        elif self.only_filelist == "" and item.file_name in self.exclude_filelist.split(
+            ","
+        ):
+            new_book.add_item(item)
+            return index
+
         if not os.path.exists("log"):
             os.makedirs("log")
 
@@ -343,17 +382,22 @@ class EPUBBookLoader(BaseBookLoader):
                 index = self._process_paragraph(p, index, p_to_save_len)
                 # pbar.update(delta) not pbar.update(index)?
                 pbar.update(1)
+                print()
                 if self.is_test and index >= self.test_num:
                     break
 
-        item.content = soup.encode()
+        if soup:
+            item.content = soup.encode()
         new_book.add_item(item)
 
         return index
 
     def make_bilingual_book(self):
         self.helper = EPUBBookLoaderHelper(
-            self.translate_model, self.accumulated_num, self.translation_style
+            self.translate_model,
+            self.accumulated_num,
+            self.translation_style,
+            self.context_flag,
         )
         new_book = self._make_new_book(self.origin_book)
         all_items = list(self.origin_book.get_items())
@@ -371,6 +415,7 @@ class EPUBBookLoader(BaseBookLoader):
             for i in all_items
         )
         pbar = tqdm(total=self.test_num) if self.is_test else tqdm(total=all_p_length)
+        print()
         index = 0
         p_to_save_len = len(self.p_to_save)
         try:
@@ -385,8 +430,6 @@ class EPUBBookLoader(BaseBookLoader):
                     new_book.add_item(item)
 
             for item in self.origin_book.get_items_of_type(ITEM_DOCUMENT):
-                # if item.file_name != "OEBPS/ch01.xhtml":
-                #     continue
                 index = self.process_item(
                     item, index, p_to_save_len, pbar, new_book, trans_taglist
                 )
@@ -439,13 +482,17 @@ class EPUBBookLoader(BaseBookLoader):
                             else:
                                 new_p.string = self.p_to_save[index]
                             self.helper.insert_trans(
-                                p, new_p.string, self.translation_style
+                                p,
+                                new_p.string,
+                                self.translation_style,
+                                self.single_translate,
                             )
                             index += 1
                         else:
                             break
                     # for save temp book
-                    item.content = soup.encode()
+                    if soup:
+                        item.content = soup.encode()
                 new_temp_book.add_item(item)
             name, _ = os.path.splitext(self.epub_name)
             epub.write_epub(f"{name}_bilingual_temp.epub", new_temp_book, {})

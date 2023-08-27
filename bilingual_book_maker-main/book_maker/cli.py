@@ -22,23 +22,20 @@ def parse_prompt_arg(prompt_arg):
             # if not a json string, treat it as a template string
             prompt = {"user": prompt_arg}
 
+    elif os.path.exists(prompt_arg):
+        if prompt_arg.endswith(".txt"):
+            # if it's a txt file, treat it as a template string
+            with open(prompt_arg, encoding="utf-8") as f:
+                prompt = {"user": f.read()}
+        elif prompt_arg.endswith(".json"):
+            # if it's a json file, treat it as a json object
+            # eg: --prompt prompt_template_sample.json
+            with open(prompt_arg, encoding="utf-8") as f:
+                prompt = json.load(f)
     else:
-        if os.path.exists(prompt_arg):
-            if prompt_arg.endswith(".txt"):
-                # if it's a txt file, treat it as a template string
-                with open(prompt_arg, "r") as f:
-                    prompt = {"user": f.read()}
-            elif prompt_arg.endswith(".json"):
-                # if it's a json file, treat it as a json object
-                # eg: --prompt prompt_template_sample.json
-                with open(prompt_arg, "r") as f:
-                    prompt = json.load(f)
-        else:
-            raise FileNotFoundError(f"{prompt_arg} not found")
+        raise FileNotFoundError(f"{prompt_arg} not found")
 
-    if prompt is None or not (
-        all(c in prompt["user"] for c in ["{text}", "{language}"])
-    ):
+    if prompt is None or any(c not in prompt["user"] for c in ["{text}", "{language}"]):
         raise ValueError("prompt must contain `{text}` and `{language}`")
 
     if "user" not in prompt:
@@ -95,6 +92,12 @@ def main():
         type=str,
         help="you can apply deepl key from here (https://rapidapi.com/splintPRO/api/deepl-translator",
     )
+    parser.add_argument(
+        "--claude_key",
+        dest="claude_key",
+        type=str,
+        help="you can find claude key from here (https://console.anthropic.com/account/keys)",
+    )
 
     parser.add_argument(
         "--test",
@@ -123,7 +126,7 @@ def main():
         "--language",
         type=str,
         choices=sorted(LANGUAGES.keys())
-        + sorted([k.title() for k in TO_LANGUAGE_CODE.keys()]),
+        + sorted([k.title() for k in TO_LANGUAGE_CODE]),
         default="zh-hans",
         metavar="LANGUAGE",
         help="language to translate to, available: {%(choices)s}",
@@ -142,6 +145,12 @@ def main():
         default="",
         help="use proxy like http://127.0.0.1:7890",
     )
+    parser.add_argument(
+        "--deployment_id",
+        dest="deployment_id",
+        type=str,
+        help="the deployment name you chose when you deployed the model",
+    )
     # args to change api_base
     parser.add_argument(
         "--api_base",
@@ -150,11 +159,32 @@ def main():
         help="specify base url other than the OpenAI's official API address",
     )
     parser.add_argument(
+        "--exclude_filelist",
+        dest="exclude_filelist",
+        type=str,
+        default="",
+        help="if you have more than one file to exclude, please use comma to split them, example: --exclude_filelist 'nav.xhtml,cover.xhtml'",
+    )
+    parser.add_argument(
+        "--only_filelist",
+        dest="only_filelist",
+        type=str,
+        default="",
+        help="if you only have a few files with translations, please use comma to split them, example: --only_filelist 'nav.xhtml,cover.xhtml'",
+    )
+    parser.add_argument(
         "--translate-tags",
         dest="translate_tags",
         type=str,
         default="p",
         help="example --translate-tags p,blockquote",
+    )
+    parser.add_argument(
+        "--exclude_translate-tags",
+        dest="exclude_translate_tags",
+        type=str,
+        default="sup",
+        help="example --exclude_translate-tags table,sup",
     )
     parser.add_argument(
         "--allow_navigable_strings",
@@ -195,12 +225,6 @@ So you are close to reaching the limit. You have to choose your own value, there
         help="how many lines will be translated by aggregated translation(This options currently only applies to txt files)",
     )
     parser.add_argument(
-        "--translation-only",
-        dest="translation_only",
-        action="store_false",
-        help="remove original paragraphs, and keep translation only",
-    )
-    parser.add_argument(
         "--retranslate",
         dest="retranslate",
         nargs=4,
@@ -211,6 +235,23 @@ So you are close to reaching the limit. You have to choose your own value, there
         Retranslate start_str's tag:
         python3 "make_book.py" --book_name "test_books/animal_farm.epub" --retranslate 'test_books/animal_farm_bilingual.epub' 'index_split_002.html' 'in spite of the present book shortage which'
 """,
+    )
+    parser.add_argument(
+        "--single_translate",
+        action="store_true",
+        help="output translated book, no bilingual",
+    )
+    parser.add_argument(
+        "--use_context",
+        dest="context_flag",
+        action="store_true",
+        help="adds an additional paragraph for global, updating historical context of the story to the model's input, improving the narrative consistency for the AI model (this uses ~200 more tokens each time)",
+    )
+    parser.add_argument(
+        "--temperature",
+        type=float,
+        default=1.0,
+        help="temperature parameter for `gpt3`/`chatgptapi`/`gpt4`/`claude`",
     )
 
     options = parser.parse_args()
@@ -226,21 +267,22 @@ So you are close to reaching the limit. You have to choose your own value, there
 
     translate_model = MODEL_DICT.get(options.model)
     assert translate_model is not None, "unsupported model"
-    if options.model in ["gpt3", "chatgptapi"]:
-        OPENAI_API_KEY = (
+    API_KEY = ""
+    if options.model in ["gpt3", "chatgptapi", "gpt4"]:
+        if OPENAI_API_KEY := (
             options.openai_key
             or env.get(
-                "OPENAI_API_KEY"
+                "OPENAI_API_KEY",
             )  # XXX: for backward compatability, deprecate soon
             or env.get(
-                "BBM_OPENAI_API_KEY"
+                "BBM_OPENAI_API_KEY",
             )  # suggest adding `BBM_` prefix for all the bilingual_book_maker ENVs.
-        )
-        if not OPENAI_API_KEY:
+        ):
+            API_KEY = OPENAI_API_KEY
+        else:
             raise Exception(
-                "OpenAI API key not provided, please google how to obtain it"
+                "OpenAI API key not provided, please google how to obtain it",
             )
-        API_KEY = OPENAI_API_KEY
     elif options.model == "caiyun":
         API_KEY = options.caiyun_key or env.get("BBM_CAIYUN_API_KEY")
         if not API_KEY:
@@ -249,16 +291,20 @@ So you are close to reaching the limit. You have to choose your own value, there
         API_KEY = options.deepl_key or env.get("BBM_DEEPL_API_KEY")
         if not API_KEY:
             raise Exception("Please provid deepl key")
+    elif options.model == "claude":
+        API_KEY = options.claude_key or env.get("BBM_CLAUDE_API_KEY")
+        if not API_KEY:
+            raise Exception("Please provid claude key")
     else:
         API_KEY = ""
 
     if options.book_from == "kobo":
-        import book_maker.obok as obok
+        from book_maker import obok
 
         device_path = options.device_path
         if device_path is None:
             raise Exception(
-                "Device path is not given, please specify the path by --device_path <DEVICE_PATH>"
+                "Device path is not given, please specify the path by --device_path <DEVICE_PATH>",
             )
         options.book_name = obok.cli_main(device_path)
 
@@ -266,7 +312,7 @@ So you are close to reaching the limit. You have to choose your own value, there
     support_type_list = list(BOOK_LOADER_DICT.keys())
     if book_type not in support_type_list:
         raise Exception(
-            f"now only support files of these formats: {','.join(support_type_list)}"
+            f"now only support files of these formats: {','.join(support_type_list)}",
         )
 
     book_loader = BOOK_LOADER_DICT.get(book_type)
@@ -289,12 +335,21 @@ So you are close to reaching the limit. You have to choose your own value, there
         is_test=options.test,
         test_num=options.test_num,
         prompt_config=parse_prompt_arg(options.prompt_arg),
+        single_translate=options.single_translate,
+        context_flag=options.context_flag,
+        temperature=options.temperature,
     )
     # other options
     if options.allow_navigable_strings:
         e.allow_navigable_strings = True
     if options.translate_tags:
         e.translate_tags = options.translate_tags
+    if options.exclude_translate_tags:
+        e.exclude_translate_tags = options.exclude_translate_tags
+    if options.exclude_filelist:
+        e.exclude_filelist = options.exclude_filelist
+    if options.only_filelist:
+        e.only_filelist = options.only_filelist
     if options.accumulated_num > 1:
         e.accumulated_num = options.accumulated_num
     if options.translation_style:
@@ -303,6 +358,15 @@ So you are close to reaching the limit. You have to choose your own value, there
         e.batch_size = options.batch_size
     if options.retranslate:
         e.retranslate = options.retranslate
+    if options.deployment_id:
+        # only work for ChatGPT api for now
+        # later maybe support others
+        assert (
+            options.model == "chatgptapi"
+        ), "only support chatgptapi for deployment_id"
+        if not options.api_base:
+            raise ValueError("`api_base` must be provided when using `deployment_id`")
+        e.translate_model.set_deployment_id(options.deployment_id)
 
     e.make_bilingual_book()
 

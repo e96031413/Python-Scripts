@@ -1,7 +1,7 @@
 import re
 import time
 from copy import copy
-from os import environ
+from os import environ, linesep
 from rich import print
 
 import openai
@@ -14,7 +14,7 @@ PROMPT_ENV_MAP = {
 }
 
 
-class ChatGPTAPI(Base):
+class GPT4(Base):
     DEFAULT_PROMPT = "Please help me to translate,`{text}` to {language}, please return only translated content not include the origin text"
 
     def __init__(
@@ -24,10 +24,13 @@ class ChatGPTAPI(Base):
         api_base=None,
         prompt_template=None,
         prompt_sys_msg=None,
+        context_flag=False,
         temperature=1.0,
         **kwargs,
     ) -> None:
         super().__init__(key, language)
+        self.context_flag = context_flag
+        self.context = "<summary>The start of the story.</summary>"
         self.key_len = len(key.split(","))
 
         if api_base:
@@ -53,10 +56,18 @@ class ChatGPTAPI(Base):
         openai.api_key = next(self.keys)
 
     def create_chat_completion(self, text):
-        content = self.prompt_template.format(
-            text=text, language=self.language, crlf="\n"
-        )
+        # content = self.prompt_template.format(
+        #     text=text, language=self.language, crlf="\n"
+        # )
+
+        content = f"{self.context if self.context_flag else ''} {self.prompt_template.format(text=text, language=self.language, crlf=linesep)}"
+
         sys_content = self.system_content or self.prompt_sys_msg.format(crlf="\n")
+
+        context_sys_str = "For each passage given, you may be provided a summary of the story up until this point (wrapped in tags '<summary>' and '</summary>') for context within the query, to provide background context of the story up until this point. If it's provided, use the context summary to aid you in translation with deeper comprehension, and write a new summary above the returned translation, wrapped in '<summary>' HTML-like tags, including important details (if relevant) from the new passage, retaining the most important key details from the existing summary, and dropping out less important details. If the summary is blank, assume it is the start of the story and write a summary from scratch. Do not make the summary longer than a paragraph, and smaller details can be replaced based on the relative importance of new details. The summary should be formatted in straightforward, inornate text, briefly summarising the entire story (from the start, including information before the given passage, leading up to the given passage) to act as an instructional payload for a Large-Language AI Model to fully understand the context of the passage."
+
+        sys_content = f"{self.system_content or self.prompt_sys_msg.format(crlf=linesep)} {context_sys_str if self.context_flag else ''} "
+
         messages = [
             {"role": "system", "content": sys_content},
             {"role": "user", "content": content},
@@ -70,7 +81,7 @@ class ChatGPTAPI(Base):
             )
 
         return openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4",
             messages=messages,
             temperature=self.temperature,
         )
@@ -122,6 +133,18 @@ The total token is too long and cannot be completely translated\n
         while attempt_count < max_attempts:
             try:
                 t_text = self.get_translation(text)
+
+                # Extract the text between <summary> and </summary> tags (including the tags), save the next context text, then delete it from the text.
+                context_match = re.search(
+                    r"(<summary>.*?</summary>)", t_text, re.DOTALL
+                )
+                if context_match:
+                    self.context = context_match.group(0)
+                    t_text = t_text.replace(self.context, "", 1)
+                else:
+                    pass
+                    # self.context = ""
+
                 break
             except Exception as e:
                 # todo: better sleep time? why sleep alawys about key_len
@@ -250,7 +273,7 @@ The total token is too long and cannot be completely translated\n
 
         return new_text
 
-    def translate_list(self, plist):
+    def translate_list(self, plist, context_flag):
         sep = "\n\n\n\n\n"
         # new_str = sep.join([item.text for item in plist])
 
@@ -293,6 +316,12 @@ The total token is too long and cannot be completely translated\n
 
         # del (num), num. sometime (num) will translated to num.
         result_list = [re.sub(r"^(\(\d+\)|\d+\.|(\d+))\s*", "", s) for s in result_list]
+
+        # # Remove the context paragraph from the final output
+        # if self.context:
+        #     context_len = len(self.context)
+        #     result_list = [s[context_len:] if s.startswith(self.context) else s for s in result_list]
+
         return result_list
 
     def set_deployment_id(self, deployment_id):

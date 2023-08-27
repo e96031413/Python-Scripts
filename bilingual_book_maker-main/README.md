@@ -1,7 +1,7 @@
 **[中文](./README-CN.md) | English**
 
 # bilingual_book_maker
-The bilingual_book_maker is an AI translation tool that uses ChatGPT to assist users in creating multi-language versions of epub/txt files and books. This tool is exclusively designed for translating epub books that have entered the public domain and is not intended for copyrighted works. Before using this tool, please review the project's **[disclaimer](./disclaimer.md)**.
+The bilingual_book_maker is an AI translation tool that uses ChatGPT to assist users in creating multi-language versions of epub/txt/srt files and books. This tool is exclusively designed for translating epub books that have entered the public domain and is not intended for copyrighted works. Before using this tool, please review the project's **[disclaimer](./disclaimer.md)**.
 
 ![image](https://user-images.githubusercontent.com/15976103/222317531-a05317c5-4eee-49de-95cd-04063d9539d9.png)
 
@@ -17,10 +17,13 @@ The bilingual_book_maker is an AI translation tool that uses ChatGPT to assist u
 
 - `pip install -r requirements.txt` or `pip install -U bbook_maker`(you can use)
 - Use `--openai_key` option to specify OpenAI API key. If you have multiple keys, separate them by commas (xxx,xxx,xxx) to reduce errors caused by API call limits.
-   Or, just set environment variable `BMM_OPENAI_API_KEY` instead.
+   Or, just set environment variable `BBM_OPENAI_API_KEY` instead.
 - A sample book, `test_books/animal_farm.epub`, is provided for testing purposes.
-- The default underlying model is [GPT-3.5-turbo](https://openai.com/blog/introducing-chatgpt-and-whisper-apis), which is used by ChatGPT currently. Use `--model gpt3` to change the underlying model to `GPT3`
-5. support DeepL model [DeepL Translator](https://rapidapi.com/splintPRO/api/deepl-translator) need pay to get the token use `--model deepl --deepl_key ${deepl_key}`
+- The default underlying model is [GPT-3.5-turbo](https://openai.com/blog/introducing-chatgpt-and-whisper-apis), which is used by ChatGPT currently. Use `--model gpt4` to change the underlying model to `GPT4` and use `--model gpt3` to change the model to `GPT3`.
+   If using `GPT4`, you can add `--use_context` to add a context paragraph to each passage sent to the model for translation (see below)
+- support DeepL model [DeepL Translator](https://rapidapi.com/splintPRO/api/deepl-translator) need pay to get the token use `--model deepl --deepl_key ${deepl_key}`
+- support DeepL free model `--model deeplfree`
+- Support [Claude](https://console.anthropic.com/docs) model, use `--model claude --claude_key ${claude_key}`
 - Use `--test` option to preview the result if you haven't paid for the service. Note that there is a limit and it may take some time.
 - Set the target language like `--language "Simplified Chinese"`. Default target language is `"Simplified Chinese"`.
    Read available languages by helper message: `python make_book.py --help`
@@ -43,13 +46,13 @@ The bilingual_book_maker is an AI translation tool that uses ChatGPT to assist u
 - `--accumulated_num` Wait for how many tokens have been accumulated before starting the translation. gpt3.5 limits the total_token to 4090. For example, if you use --accumulated_num 1600, maybe openai will
 output 2200 tokens and maybe 200 tokens for other messages in the system messages user messages, 1600+2200+200=4000, So you are close to reaching the limit. You have to choose your own
 value, there is no way to know if the limit is reached before sending
+- `--use_context` prompts the GPT4 model to create a one-paragraph summary. If it's the beginning of the translation, it will summarise the entire passage sent (the size depending on `--accumulated_num`), but if it's any proceeding passage, it will amend the summary to include details from the most recent passage, creating a running one-paragraph context payload of the important details of the entire translated work, which improves consistency of flow and tone of each translation.
 - `--translation_style` example: `--translation_style "color: #808080; font-style: italic;"`
 - `--retranslate` `--retranslate "$translated_filepath" "file_name_in_epub" "start_str" "end_str"(optional)`<br>
 Retranslate from start_str to end_str's tag:
 `python3 "make_book.py" --book_name "test_books/animal_farm.epub" --retranslate 'test_books/animal_farm_bilingual.epub' 'index_split_002.html' 'in spite of the present book shortage which' 'This kind of thing is not a good symptom. Obviously'`<br>
 Retranslate start_str's tag:
 `python3 "make_book.py" --book_name "test_books/animal_farm.epub" --retranslate 'test_books/animal_farm_bilingual.epub' 'index_split_002.html' 'in spite of the present book shortage which'`
-
 ### Examples
 
 **Note if use `pip install bbook_maker` all commands can change to `bbook args`**
@@ -58,18 +61,26 @@ Retranslate start_str's tag:
 # Test quickly
 python3 make_book.py --book_name test_books/animal_farm.epub --openai_key ${openai_key}  --test --language zh-hans
 
+# Test quickly for src
+python3 make_book.py --book_name test_books/Lex_Fridman_episode_322.srt --openai_key ${openai_key}  --test
+
 # Or translate the whole book
 python3 make_book.py --book_name test_books/animal_farm.epub --openai_key ${openai_key} --language zh-hans
 
 # Set env OPENAI_API_KEY to ignore option --openai_key
 export OPENAI_API_KEY=${your_api_key}
 
+# Use the GPT-4 model with context to Japanese
+python3 make_book.py --book_name test_books/animal_farm.epub --model gpt4 --use_context --language ja
+
 # Use the GPT-3 model with Japanese
 python3 make_book.py --book_name test_books/animal_farm.epub --model gpt3 --language ja
 
 # Use the DeepL model with Japanese
-python3 make_book.py --book_name test_books/animal_farm.epub --model deepl --deepl_token ${deepl_token}--language ja
+python3 make_book.py --book_name test_books/animal_farm.epub --model deepl --deepl_key ${deepl_key} --language ja
 
+# Use the Claude model with Japanese
+python3 make_book.py --book_name test_books/animal_farm.epub --model claude --claude_key ${claude_key} --language ja
 
 # Translate contents in <div> and <p>
 python3 make_book.py --book_name test_books/animal_farm.epub --translate-tags div,p
@@ -93,7 +104,9 @@ python3 make_book.py --book_name test_books/the_little_prince.txt --test --batch
 # (the api currently only support: simplified chinese <-> english, simplified chinese <-> japanese)
 # the official Caiyun has provided a test token (3975l6lr5pcbvidl6jl2)
 # you can apply your own token by following this tutorial(https://bobtranslate.com/service/translate/caiyun.html)
-python3 make_book.py --model caiyun --openai_key 3975l6lr5pcbvidl6jl2 --book_name test_books/animal_farm.epub
+python3 make_book.py --model caiyun --caiyun_key 3975l6lr5pcbvidl6jl2 --book_name test_books/animal_farm.epub
+
+
 # Set env BBM_CAIYUN_API_KEY to ignore option --openai_key
 export BBM_CAIYUN_API_KEY=${your_api_key}
 
@@ -105,6 +118,14 @@ python3 make_book.py --book_name 'animal_farm.epub' --openai_key sk-XXXXX --api_
 
 # Or python3 is not in your PATH
 python make_book.py --book_name 'animal_farm.epub' --openai_key sk-XXXXX --api_base 'https://xxxxx/v1'
+```
+
+Microsoft Azure Endpoints
+```shell
+python3 make_book.py --book_name 'animal_farm.epub' --openai_key XXXXX --api_base 'https://example-endpoint.openai.azure.com' --deployment_id 'deployment-name'
+
+# Or python3 is not in your PATH
+python make_book.py --book_name 'animal_farm.epub' --openai_key XXXXX --api_base 'https://example-endpoint.openai.azure.com' --deployment_id 'deployment-name'
 ```
 
 ## Docker
@@ -156,6 +177,11 @@ docker run --rm --name bilingual_book_maker --mount type=bind,source=/home/user/
 - Any issues or PRs are welcome.
 - TODOs in the issue can also be selected.
 - Please run `black make_book.py`[^black] before submitting the code.
+
+# Others better
+
+- 书译 iOS -> [AI 全书翻译工具](https://apps.apple.com/cn/app/%E4%B9%A6%E8%AF%91-ai-%E5%85%A8%E4%B9%A6%E7%BF%BB%E8%AF%91%E5%B7%A5%E5%85%B7/id6447665417)
+- 沉浸式翻译 -> [/immersive-translate](https://github.com/immersive-translate/immersive-translate)
 
 ## Appreciation
 
