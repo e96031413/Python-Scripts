@@ -3,7 +3,6 @@ http://feedly.com/i/welcome
 https://getpocket.com/a/queue/
 https://www.facebook.com/
 https://www.youtube.com/feed/subscriptions
-https://www.diigo.com/user/e96031413
 https://www.notion.so/e96031413/
 https://www.linkedin.com/notifications/
 https://outlook.live.com/owa/
