@@ -1,5 +1,5 @@
 https://calendar.google.com/calendar/u/0/r/month
-http://feedly.com/i/welcome
+https://www.inoreader.com/all_articles
 https://getpocket.com/a/queue/
 https://www.facebook.com/
 https://www.youtube.com/feed/subscriptions
