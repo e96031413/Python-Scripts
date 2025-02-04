@@ -4,7 +4,6 @@ https://getpocket.com/a/queue/
 https://www.facebook.com/
 https://www.youtube.com/feed/subscriptions
 https://www.notion.so/
-https://www.linkedin.com/notifications/
 https://outlook.live.com/owa/
 https://mail.google.com/mail/u/0/#inbox
 https://www.instagram.com/
